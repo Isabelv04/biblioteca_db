@@ -12,4 +12,5 @@ for linha in resultados:
 edicao: {linha[5]} | disponivel: {linha[6]}")
 
 conn.close()
+#
 
