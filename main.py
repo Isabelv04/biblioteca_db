@@ -1,22 +1,43 @@
 import sqlite3 as sqlite
+from util import limpa_tela
+from usuarios import lista_usuarios
+from usuarios import inclui_usuario
 
 #abre a conexão com o banco
 conn = sqlite.connect("biblioteca.db")
 conn.row_factory = sqlite.Row
 
-#cria um cursor (objeto para interagir com o banco)
-cursor = conn.cursor()
+def menu_usuarios():
 
-#executa o sql
-cursor.execute("SELECT * FROM usuarios")
+    while(True):
+    
+        limpa_tela()
+        print("-----Menu Usuários-----")
+        print("[1]-Incluir\n[2]-Listar\n[3]Voltar")
+        opcao = input("Digite a opção: ")
+        if (opcao == '1'):
+            nome = input("Nome de usuário: ")
+            inclui_usuario(conn, nome)
+        elif (opcao == '2'):
+            lista_usuarios(conn)
+            input("Digite uma tecla para continuar...")
+        elif (opcao == 3):
+            limpa_tela()
+            break
+        else:
+            print("Opção inválida! Digite uma tecla para continuar...")
 
-#pega os registros e guarda na variável resultados
-resultados = cursor.fetchall()
 
-#percorre os registros que retornaram
-for linha in resultados:
-    print(f"id: {linha['id']} | nome: {linha['nome']}")
-    #print(f"id: {linha[0]} | nome: {linha[1]}")
+while(True):
+    limpa_tela()
+    print("------Sistema da Biblioteca------") 
+    print("Digite:\n[1]-Usuários\n[2]-Autores\n[3]-Editoras")
+    opcao = input("Digite a opção: ")
 
+    if (opcao =='1'):
+        menu_usuarios()
+
+    else:
+        break
 #fecha a conexão
 conn.close()
