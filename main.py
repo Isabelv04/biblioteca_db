@@ -42,7 +42,6 @@ while(True):
         break
 #fecha a conexão
 conn.close()
-=======
 
 conn = sqlite.connect("biblioteca.db")
 cursor = conn.cursor()
@@ -56,4 +55,4 @@ for linha in resultados:
 
 conn.close()
 
->>>>>>> 2feeb8e3e6a365a6837f242ddcd2ca3f91731740
+
